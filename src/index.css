@@ -1,0 +1,423 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 80% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 60% 85%;
+    --input: 0 0% 96%;
+    --ring: 0 85% 50%;
+
+    --radius: 0.75rem;
+
+    --led-red: 220, 38, 38;
+    --led-white: 255, 255, 255;
+    --led-gold: 251, 191, 36;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .arabic-text {
+    font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .rtl-text {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+  }
+}
+
+/* ===== LUMINOUS LED / iOS EDGE STYLES ===== */
+@layer components {
+
+  /* Luminous Red LED Border */
+  .led-border {
+    border: 1.5px solid rgba(220, 38, 38, 0.7);
+    box-shadow:
+      0 0 10px rgba(220, 38, 38, 0.35),
+      0 0 20px rgba(220, 38, 38, 0.15),
+      inset 0 0 10px rgba(220, 38, 38, 0.08),
+      0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  .led-border-white {
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 0 12px rgba(255, 255, 255, 0.6),
+      0 0 24px rgba(255, 255, 255, 0.3),
+      inset 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+
+  .led-border-gold {
+    border: 1.5px solid rgba(251, 191, 36, 0.7);
+    box-shadow:
+      0 0 10px rgba(251, 191, 36, 0.4),
+      0 0 20px rgba(251, 191, 36, 0.2),
+      inset 0 0 8px rgba(251, 191, 36, 0.1);
+  }
+
+  /* LUMINOUS GLASS PANEL — light glowing style */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(200%) brightness(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(200%) brightness(1.1);
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.9);
+    box-shadow: 0 4px 24px rgba(220,38,38,0.08), 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .glass-panel-luminous {
+    background: linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(255,240,240,0.78) 100%);
+    backdrop-filter: blur(24px) saturate(220%) brightness(1.15);
+    -webkit-backdrop-filter: blur(24px) saturate(220%) brightness(1.15);
+    border-radius: 1rem;
+    border: 1.5px solid rgba(255,255,255,0.95);
+    box-shadow:
+      0 0 0 1px rgba(220,38,38,0.08),
+      0 8px 32px rgba(220,38,38,0.12),
+      0 2px 8px rgba(0,0,0,0.06),
+      inset 0 1px 0 rgba(255,255,255,1);
+  }
+
+  /* LED Glow Text Colors */
+  .led-text-red {
+    color: rgb(185, 28, 28);
+    text-shadow:
+      0 0 8px rgba(220, 38, 38, 0.6),
+      0 0 16px rgba(220, 38, 38, 0.3),
+      0 0 32px rgba(220, 38, 38, 0.15);
+  }
+
+  .led-text-white {
+    color: rgb(255, 255, 255);
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 14px rgba(255, 255, 255, 0.6),
+      0 0 28px rgba(255, 255, 255, 0.3);
+  }
+
+  .led-text-gold {
+    color: rgb(161, 98, 7);
+    text-shadow:
+      0 0 8px rgba(251, 191, 36, 0.6),
+      0 0 16px rgba(251, 191, 36, 0.3);
+  }
+
+  .led-text-dark {
+    color: rgb(30, 5, 5);
+    text-shadow: 0 1px 2px rgba(220,38,38,0.1);
+  }
+
+  /* iOS Luminous Button */
+  .ios-button {
+    @apply relative overflow-hidden rounded-xl font-semibold transition-all duration-200;
+    background: linear-gradient(145deg, rgba(220, 38, 38, 0.92), rgba(153, 27, 27, 0.98));
+    border: 1.5px solid rgba(248, 113, 113, 0.6);
+    box-shadow:
+      0 0 16px rgba(220, 38, 38, 0.4),
+      0 4px 20px rgba(220,38,38,0.2),
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    color: white;
+  }
+
+  .ios-button:hover {
+    box-shadow:
+      0 0 24px rgba(220, 38, 38, 0.7),
+      0 6px 24px rgba(220,38,38,0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .ios-button:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  /* Luminous Hadees Card */
+  .hadees-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,245,245,0.85) 100%);
+    backdrop-filter: blur(20px) saturate(200%) brightness(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(200%) brightness(1.1);
+    border-radius: 1rem;
+    border: 1.5px solid rgba(220,38,38,0.3);
+    box-shadow:
+      0 0 12px rgba(220,38,38,0.12),
+      0 4px 20px rgba(0,0,0,0.06),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hadees-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(220,38,38,0.6), rgba(255,200,200,0.8), rgba(220,38,38,0.6), transparent);
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .hadees-card:hover {
+    border-color: rgba(220, 38, 38, 0.55);
+    box-shadow:
+      0 0 24px rgba(220, 38, 38, 0.25),
+      0 8px 32px rgba(220, 38, 38, 0.1),
+      0 8px 24px rgba(0,0,0,0.08),
+      inset 0 1px 0 rgba(255,255,255,1);
+    transform: translateY(-2px);
+  }
+
+  /* Navigation Bar */
+  .nav-item {
+    @apply flex flex-col items-center gap-1 py-2 px-2 rounded-xl transition-all duration-200;
+    font-size: 10px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .nav-item.active {
+    background: rgba(220, 38, 38, 0.12);
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.2), inset 0 0 6px rgba(220, 38, 38, 0.08);
+  }
+
+  /* Scrollbar */
+  .scrollbar-red::-webkit-scrollbar { width: 4px; }
+  .scrollbar-red::-webkit-scrollbar-track { background: rgba(220,38,38,0.05); border-radius: 2px; }
+  .scrollbar-red::-webkit-scrollbar-thumb { background: rgba(220,38,38,0.5); border-radius: 2px; box-shadow: 0 0 6px rgba(220,38,38,0.4); }
+
+  /* Floating Sidebar Panel */
+  .floating-sidebar {
+    position: fixed;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .floating-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,240,240,0.9));
+    border: 1.5px solid rgba(220,38,38,0.35);
+    box-shadow: 0 2px 12px rgba(220,38,38,0.15), 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+  }
+
+  .floating-btn:hover {
+    background: linear-gradient(135deg, rgba(220,38,38,0.15), rgba(255,200,200,0.2));
+    border-color: rgba(220,38,38,0.6);
+    box-shadow: 0 4px 16px rgba(220,38,38,0.3);
+    transform: scale(1.08);
+  }
+
+  /* Book Card */
+  .book-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,245,245,0.88) 100%);
+    backdrop-filter: blur(16px) brightness(1.05);
+    border-radius: 1rem;
+    border: 1.5px solid rgba(220,38,38,0.25);
+    box-shadow: 0 4px 20px rgba(220,38,38,0.1), 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .book-card:hover {
+    border-color: rgba(220,38,38,0.5);
+    box-shadow: 0 8px 32px rgba(220,38,38,0.2), 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Category Card */
+  .category-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,242,242,0.85));
+    backdrop-filter: blur(16px);
+    border-radius: 1rem;
+    border: 1.5px solid rgba(220,38,38,0.2);
+    box-shadow: 0 4px 16px rgba(220,38,38,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .category-card:hover {
+    border-color: rgba(220,38,38,0.5);
+    box-shadow: 0 8px 28px rgba(220,38,38,0.2);
+    transform: translateY(-3px);
+  }
+
+  /* Header bar luminous */
+  .header-luminous {
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,248,248,0.92) 100%);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border-bottom: 1.5px solid rgba(220,38,38,0.2);
+    box-shadow: 0 2px 20px rgba(220,38,38,0.1), 0 1px 4px rgba(0,0,0,0.04);
+  }
+}
+
+/* ===== BACKGROUND WALLPAPER THEMES (Bright/Luminous) ===== */
+
+/* Animated Gradient Overlay for dynamic look */
+@keyframes bg-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(220, 38, 38, 0.3), 0 0 20px rgba(220, 38, 38, 0.15); }
+  50% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.6), 0 0 40px rgba(220, 38, 38, 0.3), 0 0 60px rgba(220, 38, 38, 0.15); }
+}
+
+@keyframes float-particle {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes led-flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(220,38,38,0.7), 0 0 16px rgba(220,38,38,0.4); }
+  50% { text-shadow: 0 0 16px rgba(220,38,38,1), 0 0 32px rgba(220,38,38,0.6), 0 0 48px rgba(220,38,38,0.3); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float-up-down {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-led-flicker { animation: led-flicker 8s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.5s ease-out forwards; }
+.animate-float { animation: float-up-down 3s ease-in-out infinite; }
+
+.shimmer-text {
+  background: linear-gradient(90deg, #b91c1c, #dc2626, #ef4444, #fbbf24, #ef4444, #b91c1c);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+.shimmer-text-light {
+  background: linear-gradient(90deg, #7f1d1d, #dc2626, #f87171, #fbbf24, #f87171, #dc2626);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* RTL Support */
+[dir="rtl"] { text-align: right; }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .floating-sidebar, nav, .header-luminous button, canvas { display: none !important; }
+  body { background: white !important; }
+  .hadees-card { border: 1px solid #fca5a5 !important; box-shadow: none !important; break-inside: avoid; margin-bottom: 16px; }
+  .glass-panel-luminous { background: white !important; backdrop-filter: none !important; }
+}
+
+/* ===== NEW ANIMATIONS ===== */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-marquee { animation: marquee 18s linear infinite; }
+
+@keyframes led-scan {
+  0% { left: -30%; }
+  100% { left: 130%; }
+}
+.led-scan::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: led-scan 3s linear infinite;
+}
+
+/* Scroll snap */
+.snap-x { scroll-snap-type: x mandatory; }
+.snap-start { scroll-snap-align: start; }
+
+/* Mobile safe area */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Text color for luminous backgrounds */
+.text-on-light { color: #1a0000; }
+.text-secondary-on-light { color: #5a1212; }
+.text-muted-on-light { color: #9b3535; }
